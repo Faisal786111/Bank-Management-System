@@ -1,0 +1,148 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/* Global Decaration of variables */
+int totalamount=1000;
+int totaldiposite=0;
+int totalwith=0;
+int totaltr=0;
+
+/* Bank mangement Stucture */
+struct Bank
+{
+    int ch;
+    int amount;
+    int amo;
+    int tr;
+    int account;
+    int pnumber;
+    char name[31];
+}manage;
+
+/* Functions declaraion */
+int list();
+void deposite();
+void withdraw();
+void transfer();
+void checkdetail();
+void end();
+
+/* main function */
+int main()
+{
+    printf("\n Enter Your Name :");
+    scanf("%s",manage.name);
+    printf("\n Enter Your Phone Number :");
+    scanf("%d",&manage.pnumber);
+    printf("\n Enter Your Acount Number :");
+    scanf("%d",&manage.account);
+    
+    while(1)
+    {
+        switch(list())
+        {
+            case 1:
+                deposite();
+                break;
+            case 2:
+                withdraw();
+                break;
+            case 3:
+                transfer();
+                break;
+            case 4:
+                checkdetail();
+                break;
+            case 5:
+                end();
+                exit(0);
+            default:
+            printf("\n Invalid Choice.");
+        }
+    }
+    return 0;
+}
+
+/* list function definition */
+int list()
+{
+    printf("\n\n 1.Deposite Amount :");
+    printf("\n 2.Withdraw Amount :");
+    printf("\n 3.Transfer Amount :");
+    printf("\n 4.Check Detail :");
+    printf("\n 5.Exit :");
+    printf("\n Enter Your Choice :");
+    scanf("%d",&manage.ch);
+    return(manage.ch); 
+}
+
+/* deposite function definition */
+void deposite()
+{
+    printf("\n Enter The Amount You Want To Deposite :");
+    scanf("%d",&manage.amount);
+    if(manage.amount>0)
+    {
+        totalamount+=manage.amount;
+        totaldiposite+=manage.amount;
+    }
+}
+
+/* withdraw function definition */
+void withdraw()
+{
+    printf("\n Enter The Amount You Want To Withdraw :");
+    scanf("%d",&manage.amo);
+    if(manage.amo<=totalamount && manage.amo>0)
+    {
+        totalamount-=manage.amo;
+        totalwith+=manage.amo;
+    }
+    else
+    {
+        printf("\n Less Amount Withdraw is not possible.");
+    }
+}
+
+/* transfer function definition */
+void transfer()
+{
+    printf("\n Enter The Amount You Want To Transfer :");  
+    scanf("%d",&manage.tr);
+    if(manage.tr<=totalamount && manage.tr>0)
+    {
+        totalamount-=manage.tr;
+        totaltr+=manage.tr;
+    }
+    else
+    {
+        printf("\n Less Amount Transfer is not possible.");
+    }
+} 
+
+/* checkdetail function definition */
+void checkdetail()
+{
+    printf("\n Total Amout \t\t= %d",totalamount);
+    printf("\n Diposited Amount \t= %d",totaldiposite);
+    printf("\n Withdraw Amount \t= %d",totalwith);
+    printf("\n Transfered Amount \t= %d",totaltr);
+}
+
+/* end function dfinition */
+void end()
+{
+    printf("\n **********************************************************************************************************");
+    printf("\n Your Name \t\t= %s",manage.name);
+    printf("\n Your Phone Number\t= %d",manage.pnumber);
+    printf("\n Your Account Number\t= %d",manage.account);
+    printf("\n Total Amout \t\t= %d",totalamount);
+    printf("\n Diposited Amount \t= %d",totaldiposite);
+    printf("\n Withdraw Amount \t= %d",totalwith);
+    printf("\n Transfered Amount \t= %d",totaltr);
+    printf("\n\n ***************************************************Thank You**********************************************");
+}
+
+
+
+
